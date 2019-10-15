@@ -1,0 +1,3 @@
+[submodule "armview-vscode"]
+	path = armview-vscode
+	url = https://github.com/benc-uk/armview-vscode.git
