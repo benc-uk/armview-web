@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ARM Template Viewer</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/slate/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-FBPbZPVh+7ks5JJ70RJmIaqyGnvMbeJ5JQfEbW0Ac6ErfvEg9yG56JQJuMNptWsH" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/55db8d5f64.js" crossorigin="anonymous"></script>
+  <link href="/public/css/wrapper.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/ext/img/icons/main.png" type="image/png">
+</head>
+
+<body class="home">
+
+  <h1><img src="/ext/img/icons/main.svg" style="height:3rem">&nbsp;ARM Template Viewer</h1>
+  <hr class="home">
+  <p class="lead">
+  This is a standalone web version of the <a class="font-weight-bold" href="https://marketplace.visualstudio.com/items?itemName=bencoleman.armview">ARM Template Viewer</a> extension for VS Code. This web app displays a graphical preview of Azure Resource Manager (ARM) templates. Once a template is loaded, the view will show all resources with the official Azure icons and also linkage between the resources.<br><br>
+  
+  Not all features from the extension are supported, for the full experience please use the extension<br><br>
+  </p>
+
+  <div class="card text-white bg-primary">
+    <div class="card-header bg-secondary text-white"><i class="fab fa-github"></i> Load Template From GitHub Quickstarts</div>
+    <div class="card-body">
+      <div class="d-flex justify-content-start">
+        <select class="form-control flex-fill" id="listsel" style="width:60%">
+          <% for(l in gitHubLinks) { %>
+          <option><%= gitHubLinks[l] %></option>
+          <% } %>
+        </select>&nbsp;
+        <button class="btn btn-success"
+          onclick="document.location = '/view/' + encodeURIComponent(`https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/${document.getElementById('listsel').value}/azuredeploy.json`)">
+          View Template</button>
+      </div>
+    </div>
+  </div>
+  <br/>
+
+  <div class="card text-white bg-primary">
+    <div class="card-header bg-secondary text-white"><i class="fas fa-file-code"></i> Load Template From File</div>
+    <div class="card-body">
+      <div class="d-flex justify-content-start">
+        <form method="post" id="fileform" action="/view" enctype="multipart/form-data" autocomplete="off">
+          <input type="file" class="form-control" name="templateFile" accept=".json" id="loadfile" style="display: none"
+          onchange="document.getElementById('fileform').submit()">
+        </form>
+        <button class="btn btn-success" onclick="document.getElementById('loadfile').click()">Load Template File</button>
+      </div>
+    </div>
+  </div> 
+  <br/> 
+
+  <div class="card text-white bg-primary">
+    <div class="card-header bg-secondary text-white"><i class="fas fa-globe"></i> Load Template From URL</div>
+    <div class="card-body">
+      <div class="d-flex justify-content-start">
+        <input class="form-control flex-fill" id="urlinput" style="width:60%"/>&nbsp;
+        <button class="btn btn-success" onclick="document.location = '/view/' + encodeURIComponent(document.getElementById('urlinput').value)">Fetch & View URL</button>
+      </div>
+    </div>
+  </div>  
+  <br/>
+  <footer>
+    Ben Coleman, 2019 &nbsp; <a href="https://github.com/benc-uk/armview-web">github.com/benc-uk/armview-web</a>
+  </footer>
+
+</body>
+</html>

@@ -1,14 +1,39 @@
 :root {
-  --vscode-button-foreground: #fff;
-  --vscode-button-background: #5250d4;
-  --vscode-button-hoverBackground: #6765e2;
-  --vscode-notifications-background: rgb(26, 28, 29);
-  --vscode-selection-background: rgb(12, 87, 131);
+  /* Change these */
+  --theme-fg: rgb(231, 231, 231);
+  --theme-bg: rgb(40, 40, 44);
+  --theme-darker: rgb(26, 26, 27);
+  --theme-lighter: rgb(73, 73, 82);
+  --theme-main: rgb(82, 80, 212);
+  --theme-hover: rgb(127, 125, 243);
+
+  /* These vars "trick" the extension CSS and JS to thinking it's running in VS Code */
+  /* Don't change these */
+  --vscode-button-foreground: var(--theme-fg);
+  --vscode-button-background: var(--theme-main);
+  --vscode-button-hoverBackground: var(--theme-hover);
+  --vscode-notifications-background: var(--theme-darker);
+  --vscode-selection-background: var(--theme-lighter);
+  --vscode-gitDecoration-addedResourceForeground: var(--theme-lighter);
+  --vscode-sideBarSectionHeader-background: var(--theme-lighter);
   --vscode-editor-font-family: Consolas;
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(40, 40, 44);
+  background: var(--theme-bg);
   color: #eee;
+}
+
+hr.home {
+  border: 3px solid var(--success);
+}
+
+body.home {
+  padding: 20px;
+}
+
+.card-header {
+  font-size: 150% !important;
+  font-weight: 600;
 }

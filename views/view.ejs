@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- files from extension version -->
+	<script src="/ext/js/vendor/jquery-3.4.1.slim.min.js"></script>
+	<script src="/ext/js/vendor/cytoscape.min.js"></script>
+	<script src="/ext/js/vendor/cytoscape-snap-to-grid.js"></script>
+	<script src="/ext/js/main.js"></script>
+	<link href="/ext/css/main.css" rel="stylesheet" type="text/css">
+
+	<!-- wrappers and web version specific files -->
+	<script src="/public/js/wrapper.js"></script>
+	<script src="/public/js/FileSaver.min.js"></script>
+	<link href="/public/css/wrapper.css" rel="stylesheet" type="text/css">
+
+	<title>ARM Viewer</title>
+</head>
+<body>
+	<div id="buttons">
+		<% if(showHome) { %>
+			<button onclick="document.location.href='/'"><img src="/ext/img/toolbar/home.svg">&nbsp; Home</button>
+			&nbsp;&nbsp;
+		<% } %>
+		<button onclick="toggleLabels()"><img src="/ext/img/toolbar/labels.svg">&nbsp; Labels</button>
+		<button onclick="cy.fit()"><img src="/ext/img/toolbar/fit.svg">&nbsp; Re-fit</button>
+		<button onclick="toggleSnap()" id="snapbut"><img src="/ext/img/toolbar/snap.svg">&nbsp; Snap</button>
+		Layout:
+		<button onclick="reLayout('breadthfirst', true)"><img src="/ext/img/toolbar/tree.svg"></button>
+		<button onclick="reLayout('grid', true)"><img src="/ext/img/toolbar/grid.svg"></button>
+		&nbsp;&nbsp;	
+		<button onclick="setFiltersWrapper()"><img src="/ext/img/toolbar/filter.svg">&nbsp; Filter</button>
+		&nbsp;&nbsp;
+		<button onclick="displayData(data)"><img src="/ext/img/toolbar/reload.svg">&nbsp; Reload</button>
+		<button onclick="exportPNGWrapper()"><img src="/ext/img/toolbar/export.svg">&nbsp; Export</button>
+	</div>
+
+	<div class="loader"></div>
+
+	<div id="mainview"></div>
+
+	<div id="statusbar">
+	  Objects: <span id="statusResCount">0</span> &nbsp | &nbsp
+		Snap to grid: <span id="statusSnap">Off</span> &nbsp | &nbsp
+		Filters: <span id="statusFilters">none</span>
+	</div>
+
+	<div id="infobox">
+	  <div class="panel-heading" onclick="hideInfo()"><img id="infoimg" src=''/> &nbsp; Resource Details</div>
+    <div class="panel-body">
+      <table id="infotable"></table>
+    </div>
+	</div>
+
+	<script>
+		// **** Init Cytoscape and canvas (function in main.js) ****
+		init("<%= iconPath %>");
+
+		// This displays the data via functions in /ext/js/main.js
+		<% if(data) { %>
+			var data = <%- data %>;
+			document.querySelector('.loader').style.display = "none"
+			document.getElementById('statusResCount').innerHTML = data.length;
+			displayData(data);
+		<% } %>
+
+	</script>
+</body>
+</html>
