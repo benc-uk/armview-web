@@ -36,5 +36,5 @@ The following routes are supported:
 - `GET /view?url=<template-url>` Render a template from the given URL (plain or URI encoded)
 - `GET /view/<template-url>` Render a template from the given URL, must be encoded
 - `POST /view` HTTP POST raw template as text or JSON
-- `POST /view` HTTP POST template as `multipart/form-data` file upload, file content field should be called `fileName`
+- `POST /view` HTTP POST template as `multipart/form-data` file upload, file content field should be called `templateFile`
 - `POST /view` HTTP POST template as via `application/x-www-form-urlencoded` form, template content field should be named `template`
