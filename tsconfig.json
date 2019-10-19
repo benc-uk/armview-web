@@ -18,5 +18,8 @@
     "armview-vscode/src/lib/arm-parser.ts",
     "armview-vscode/src/lib/arm-parser-types.ts",
     "armview-vscode/src/lib/arm-exp-parser.ts"
+  ],
+  "exclude": [
+    "src/public/js/**"
   ]
 }

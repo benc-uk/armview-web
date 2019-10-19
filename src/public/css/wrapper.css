@@ -1,0 +1,14 @@
+:root {
+  --vscode-button-foreground: #fff;
+  --vscode-button-background: #5250d4;
+  --vscode-button-hoverBackground: #6765e2;
+  --vscode-notifications-background: rgb(26, 28, 29);
+  --vscode-selection-background: rgb(12, 87, 131);
+  --vscode-editor-font-family: Consolas;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(40, 40, 44);
+  color: #eee;
+}
