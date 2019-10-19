@@ -33,7 +33,7 @@
           <% } %>
         </select>&nbsp;
         <button class="btn btn-success"
-          onclick="document.location = '/view/' + encodeURIComponent(`https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/${document.getElementById('listsel').value}/azuredeploy.json`)">
+          onclick="document.location = '/view?url=' + encodeURIComponent(`https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/${document.getElementById('listsel').value}/azuredeploy.json`)">
           View Template</button>
       </div>
     </div>
@@ -59,7 +59,7 @@
     <div class="card-body">
       <div class="d-flex justify-content-start">
         <input class="form-control flex-fill" id="urlinput" style="width:60%"/>&nbsp;
-        <button class="btn btn-success" onclick="document.location = '/view/' + encodeURIComponent(document.getElementById('urlinput').value)">Fetch & View URL</button>
+        <button class="btn btn-success" onclick="document.location = '/view?url=' + encodeURIComponent(document.getElementById('urlinput').value)">Fetch & View URL</button>
       </div>
     </div>
   </div>  
