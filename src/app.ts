@@ -4,7 +4,8 @@ import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import axios from 'axios';
 import * as cache from 'memory-cache';
-// import * as fileUpload from 'express-fileupload'
+import 'isomorphic-fetch';
+import * as fileUpload from 'express-fileupload';
 import ARMParser from '../armview-vscode/src/lib/arm-parser';
 
 // Create Express server
@@ -35,7 +36,6 @@ app.use( '/public', express.static(path.join(__dirname, '..', 'public')) );
 app.use( '/ext',  express.static(path.join(__dirname, '..', 'ext')) );
 
 // Allow file uploads
-const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
 // ============================================================================
@@ -82,8 +82,8 @@ app.get(['/view/:url', '/view'], async (req: Request, res: Response) => {
     if(!url) throw new Error('No URL, supplied');
 
     // Get template from raw/text body or form parameter named 'template'
-    let result = await axios({ url: url, responseType: 'text' });
-    let template = JSON.stringify(result.data);
+    const response = await fetch(url);
+    let template = await response.text();
     
     showHome = true;
     parseAndRender(template, res);
@@ -100,11 +100,12 @@ app.get(['/', '/home'], async (req: Request, res: Response) => {
 
   let gitHubLinks: string[] = [];
   if(!githubHtml) {
-    let result = await axios({ url: QUICKSTART_URL, responseType: 'text' });
-    
+    const response = await fetch(QUICKSTART_URL);
+    let result = await response.text();
+
     // Cache resulting HTML for 1 hour
-    cache.put('githubHtml', result.data.toString(), 3600 * 1000);
-    gitHubLinks = processGithubHtml(result.data.toString(), res);
+    cache.put('githubHtml', result, 3600 * 1000);
+    gitHubLinks = processGithubHtml(result, res);
   } else {
     gitHubLinks = processGithubHtml(githubHtml, res);
   }
