@@ -21,20 +21,20 @@
 <body>
 	<div id="buttons">
 		<% if(showHome) { %>
-			<button onclick="document.location.href='/'"><img src="/ext/img/toolbar/home.svg">&nbsp; Home</button>
+			<button onclick="document.location.href='/'"><img src="/ext/img/toolbar/home.svg"><span class="lab">&nbsp; Home</span></button>
 			&nbsp;&nbsp;
 		<% } %>
-		<button onclick="toggleLabels()"><img src="/ext/img/toolbar/labels.svg">&nbsp; Labels</button>
-		<button onclick="cy.fit()"><img src="/ext/img/toolbar/fit.svg">&nbsp; Re-fit</button>
-		<button onclick="toggleSnap()" id="snapbut"><img src="/ext/img/toolbar/snap.svg">&nbsp; Snap</button>
-		Layout:
+		<button onclick="toggleLabels()"><img src="/ext/img/toolbar/labels.svg"><span class="lab">&nbsp; Labels</span></button>
+		<button onclick="cy.fit()"><img src="/ext/img/toolbar/fit.svg"><span class="lab">&nbsp; Re-fit</span></button>
+		<button onclick="toggleSnap()" id="snapbut"><img src="/ext/img/toolbar/snap.svg"><span class="lab">&nbsp; Snap</span></button>
+		<span class="lab">Layout:</span>
 		<button onclick="reLayout('breadthfirst', true)"><img src="/ext/img/toolbar/tree.svg"></button>
 		<button onclick="reLayout('grid', true)"><img src="/ext/img/toolbar/grid.svg"></button>
 		&nbsp;&nbsp;	
-		<button onclick="setFiltersWrapper()"><img src="/ext/img/toolbar/filter.svg">&nbsp; Filter</button>
+		<button onclick="setFiltersWrapper()"><img src="/ext/img/toolbar/filter.svg"><span class="lab">&nbsp; Filter</span></button>
 		&nbsp;&nbsp;
-		<button onclick="displayData(data)"><img src="/ext/img/toolbar/reload.svg">&nbsp; Reload</button>
-		<button onclick="exportPNGWrapper()"><img src="/ext/img/toolbar/export.svg">&nbsp; Export</button>
+		<button onclick="displayData(data)"><img src="/ext/img/toolbar/reload.svg"><span class="lab">&nbsp; Reload</span></button>
+		<button onclick="exportPNGWrapper()"><img src="/ext/img/toolbar/export.svg"><span class="lab">&nbsp; Export</span></button>
 	</div>
 
 	<div class="loader"></div>
