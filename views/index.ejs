@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>ARM Template Viewer</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/slate/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-FBPbZPVh+7ks5JJ70RJmIaqyGnvMbeJ5JQfEbW0Ac6ErfvEg9yG56JQJuMNptWsH" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/55db8d5f64.js" crossorigin="anonymous"></script>
   <link href="/public/css/wrapper.css" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/ext/img/icons/main.png" type="image/png">
@@ -23,8 +22,8 @@
   Not all features from the extension are supported, for the full experience please use the extension<br><br>
   </p>
 
-  <div class="card text-white bg-primary">
-    <div class="card-header bg-secondary text-white"><i class="fab fa-github"></i> Load Template From GitHub Quickstarts</div>
+  <div class="card text-white">
+    <div class="card-header bg-primary text-white"><i class="fab fa-github"></i> Load Template From GitHub Quickstarts</div>
     <div class="card-body">
       <div class="d-flex justify-content-start">
         <select class="form-control flex-fill" id="listsel" style="width:60%">
@@ -32,7 +31,7 @@
           <option><%= gitHubLinks[l] %></option>
           <% } %>
         </select>&nbsp;
-        <button class="btn btn-success"
+        <button class="btn btn-info"
           onclick="document.location = '/view?url=' + encodeURIComponent(`https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/${document.getElementById('listsel').value}/azuredeploy.json`)">
           View Template</button>
       </div>
@@ -40,26 +39,26 @@
   </div>
   <br/>
 
-  <div class="card text-white bg-primary">
-    <div class="card-header bg-secondary text-white"><i class="fas fa-file-code"></i> Load Template From File</div>
+  <div class="card text-white">
+    <div class="card-header bg-primary text-white"><i class="fas fa-file-code"></i> Load Template From File</div>
     <div class="card-body">
       <div class="d-flex justify-content-start">
         <form method="post" id="fileform" action="/view" enctype="multipart/form-data" autocomplete="off">
           <input type="file" class="form-control" name="templateFile" accept=".json" id="loadfile" style="display: none"
           onchange="document.getElementById('fileform').submit()">
         </form>
-        <button class="btn btn-success" onclick="document.getElementById('loadfile').click()">Load Template File</button>
+        <button class="btn btn-info" onclick="document.getElementById('loadfile').click()">Load Template File</button>
       </div>
     </div>
   </div> 
   <br/> 
 
-  <div class="card text-white bg-primary">
-    <div class="card-header bg-secondary text-white"><i class="fas fa-globe"></i> Load Template From URL</div>
+  <div class="card text-white">
+    <div class="card-header bg-primary text-white"><i class="fas fa-globe"></i> Load Template From URL</div>
     <div class="card-body">
       <div class="d-flex justify-content-start">
         <input class="form-control flex-fill" id="urlinput" style="width:60%"/>&nbsp;
-        <button class="btn btn-success" onclick="document.location = '/view?url=' + encodeURIComponent(document.getElementById('urlinput').value)">Fetch & View URL</button>
+        <button class="btn btn-info" onclick="document.location = '/view?url=' + encodeURIComponent(document.getElementById('urlinput').value)">Fetch & View URL</button>
       </div>
     </div>
   </div>  

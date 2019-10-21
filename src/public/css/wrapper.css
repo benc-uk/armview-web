@@ -3,9 +3,10 @@
   --theme-fg: rgb(231, 231, 231);
   --theme-bg: rgb(40, 40, 44);
   --theme-darker: rgb(26, 26, 27);
-  --theme-lighter: rgb(73, 73, 82);
-  --theme-main: rgb(82, 80, 212);
-  --theme-hover: rgb(127, 125, 243);
+  --theme-lighter: rgb(40, 67, 87);
+  --theme-main: rgb(0, 120, 212);
+  --theme-hover: rgb(37, 151, 238);
+  --info: rgb(0, 120, 212) !important;
 
   /* These vars "trick" the extension CSS and JS to thinking it's running in VS Code */
   /* Don't change these */
@@ -32,7 +33,7 @@ body {
 }
 
 hr.home {
-  border: 3px solid var(--success);
+  border: 3px solid var(--info);
 }
 
 body.home {
