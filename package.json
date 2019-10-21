@@ -1,6 +1,6 @@
 {
   "name": "armview-web",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Standalone web version of armview-vscode extension",
   "repository": {
     "type": "git",
@@ -10,13 +10,14 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
-    "build": "npm run build-ts && npm run copy-static-assets",
+    "build": "npm run build-ts && npm run copy-assets",
     "serve": "node dist/src/server.js",
     "watch-node": "nodemon dist/server.js",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Server,Assets\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\" \"npm run watch-assets\"",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "copy-static-assets": "node copyStaticAssets.js"
+    "copy-assets": "node copyStaticAssets.js",
+    "watch-assets": "nodemon -w src/public -e css,png,js copyStaticAssets.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

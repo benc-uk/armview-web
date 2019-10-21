@@ -7,7 +7,7 @@ acquireVsCodeApi = function() {
 }
 
 //
-// This replaces exportPNG from main.js
+// This replaces exportPNG function in extension main.js
 //
 function exportPNGWrapper() {
   let blob = cy.png({ scale: 2.0, output: 'blob' });  
@@ -15,7 +15,7 @@ function exportPNGWrapper() {
 }
 
 //
-// This replaces exportPNG from main.js
+// This replaces exportPNG in extension main.js
 //
 // Has to be after main.js
 function setFiltersWrapper() {

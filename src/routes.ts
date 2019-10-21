@@ -81,8 +81,9 @@ app.get(['/', '/home'], async (req: Request, res: Response) => {
   } else {
     gitHubLinks = _processGithubHtml(cachedHtml);
   }
+  let ver = require('../../package.json').version;
 
-  res.render('index', { gitHubLinks: gitHubLinks });
+  res.render('index', { gitHubLinks: gitHubLinks, version: ver });
 })
 
 //

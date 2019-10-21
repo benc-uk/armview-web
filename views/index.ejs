@@ -57,14 +57,14 @@
     <div class="card-header bg-primary text-white"><i class="fas fa-globe"></i> Load Template From URL</div>
     <div class="card-body">
       <div class="d-flex justify-content-start">
-        <input class="form-control flex-fill" id="urlinput" style="width:60%"/>&nbsp;
+        <input class="form-control flex-fill" id="urlinput" style="width:60%" placeholder="URL to publicly hosted JSON file"/>&nbsp;
         <button class="btn btn-info" onclick="document.location = '/view?url=' + encodeURIComponent(document.getElementById('urlinput').value)">Fetch & View URL</button>
       </div>
     </div>
   </div>  
   <br/>
   <footer>
-    Ben Coleman, 2019 &nbsp; <a href="https://github.com/benc-uk/armview-web">github.com/benc-uk/armview-web</a>
+    Ben Coleman, 2019 &nbsp; <a href="https://github.com/benc-uk/armview-web">github.com/benc-uk/armview-web</a> &nbsp; v<%= version %>
   </footer>
 
 </body>

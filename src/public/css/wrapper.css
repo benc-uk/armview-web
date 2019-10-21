@@ -1,12 +1,12 @@
 :root {
-  /* Change these */
+  /* Change these to restyle the main view */ 
   --theme-fg: rgb(231, 231, 231);
   --theme-bg: rgb(40, 40, 44);
   --theme-darker: rgb(26, 26, 27);
   --theme-lighter: rgb(40, 67, 87);
   --theme-main: rgb(0, 120, 212);
   --theme-hover: rgb(37, 151, 238);
-  --info: rgb(0, 120, 212) !important;
+  --info: var(--theme-main) !important;
 
   /* These vars "trick" the extension CSS and JS to thinking it's running in VS Code */
   /* Don't change these */
@@ -20,6 +20,7 @@
   --vscode-editor-font-family: Consolas;
 }
 
+/* Simple responsiveness on toolbar */
 @media only screen and (max-width: 820px) {
   .lab {
     display: none;
@@ -43,4 +44,8 @@ body.home {
 .card-header {
   font-size: 150% !important;
   font-weight: 600;
+}
+
+.btn-info {
+  background-color: var(--theme-main);
 }
