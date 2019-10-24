@@ -86,6 +86,10 @@ app.get(['/', '/home'], async (req: Request, res: Response) => {
   res.render('index', { gitHubLinks: gitHubLinks, version: ver });
 })
 
+app.get('/test', (req: Request, res: Response) => {
+  res.render('portaltest')
+});
+
 //
 // Parse using ARMParser and render the 'view' view
 //

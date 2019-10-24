@@ -17,6 +17,9 @@
 	<script src="/public/js/FileSaver.min.js"></script>
 	<link href="/public/css/wrapper.css" rel="stylesheet" type="text/css">
 
+	<!-- AZURE PORTAL CODE -->
+
+	
 	<title>ARM Viewer</title>
 </head>
 <body>
@@ -55,18 +58,34 @@
     </div>
 	</div>
 
+	<!-- AZURE PORTAL CODE -->
+	<script src="/public/js/azure-portal.js"></script>
+
 	<script>
+		console.log(`##### trustedParentOrigin ${trustedParentOrigin}`);
+		
 		// **** Init Cytoscape and canvas (function in main.js) ****
 		init("<%= iconPath %>");
 
-		// This displays the data via functions in /ext/js/main.js
-		<% if(data) { %>
-			var data = <%- data %>;
+		var data = <%- data %>;
+
+		// Called either by azure-portal.js on receiving correct message 
+		// or when forced below when in standalone web app mode
+		function start(msg) {		
 			document.querySelector('.loader').style.display = "none"
 			document.getElementById('statusResCount').innerHTML = data.length;
 			displayData(data);
-		<% } %>
 
+			postMessageToParent("initializationcomplete");
+			postMessageToParent("ready");
+			postMessageToParent("getAuthToken");
+		}
+
+		// When not in the portal and iframe, directly invoke start
+		if(!trustedParentOrigin) {
+			start({})
+		}
 	</script>
+
 </body>
 </html>

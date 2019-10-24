@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TEST</title>
+</head>
+<body onload="">
+  <iframe id="viewFrame" src="http://localhost:3000/view?url=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-2-vms-internal-load-balancer%2Fazuredeploy.json&trustedAuthority=http://localhost:3000" frameborder="0" width="100%" style="height:95vh"></iframe>
+
+  <script>
+    window.addEventListener("message", evt => {
+      console.log(`### Frame parent, message recv: ${JSON.stringify(evt.data)}`);
+    }, false);
+
+    window.addEventListener('load', (event) => {
+      let ifrm = document.getElementById('viewFrame');
+      ifrm.contentWindow.postMessage({kind: 'frametitle', signature: 'ArmViewBlade', data: ''}, 'http://localhost:3000');
+    });
+    
+  </script>
+</body>
+</html>
