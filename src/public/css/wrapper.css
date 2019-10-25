@@ -33,6 +33,10 @@ body {
   color: #eee;
 }
 
+.lab {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
 hr.home {
   border: 3px solid var(--info);
 }
