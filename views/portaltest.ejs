@@ -7,13 +7,19 @@
   <title>TEST</title>
 </head>
 <body onload="">
+  <!-- Load viewer as iframe -->
+  <!-- Picked a random template on GitHub as the URL -->
+  <!-- Note the trustedAuthority queryParam -->
   <iframe id="viewFrame" src="http://localhost:3000/view?url=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-2-vms-internal-load-balancer%2Fazuredeploy.json&trustedAuthority=http://localhost:3000" frameborder="0" width="100%" style="height:95vh"></iframe>
 
   <script>
+    // Testing only
     window.addEventListener("message", evt => {
       console.log(`### Frame parent, message recv: ${JSON.stringify(evt.data)}`);
     }, false);
 
+    // Testing only, 
+    // Pretend we are the portal and send messages to the iframe to start it
     window.addEventListener('load', (event) => {
       let ifrm = document.getElementById('viewFrame');
       ifrm.contentWindow.postMessage({kind: 'frametitle', signature: 'ArmViewBlade', data: ''}, 'http://localhost:3000');

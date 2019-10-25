@@ -77,6 +77,7 @@ window.addEventListener("message", function(evt) {
 
   // Handle different message kinds.
   if (msg.kind === "frametitle") {   
+    // This seems to be the way to trigger starting, so kick things off
     start(msg);
   } else if (msg.kind === "framecontent") {
     //document.getElementsByClassName("fxs-frame-content")[0].innerText = msg.data;
