@@ -5,21 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/ext/img/icons/main.png" type="image/png">
 
-	<!-- files from extension version -->
+	<!-- Files from extension sub-project -->
 	<script src="/ext/js/vendor/jquery-3.4.1.slim.min.js"></script>
 	<script src="/ext/js/vendor/cytoscape.min.js"></script>
 	<script src="/ext/js/vendor/cytoscape-snap-to-grid.js"></script>
 	<script src="/ext/js/main.js"></script>
 	<link href="/ext/css/main.css" rel="stylesheet" type="text/css">
 
-	<!-- wrappers and web version specific files -->
+	<!-- Wrappers and web version specific files -->
 	<script src="/public/js/wrapper.js"></script>
 	<script src="/public/js/FileSaver.min.js"></script>
 	<link href="/public/css/wrapper.css" rel="stylesheet" type="text/css">
 
-	<!-- AZURE PORTAL CODE -->
-
-	
 	<title>ARM Viewer</title>
 </head>
 <body>
@@ -82,7 +79,7 @@
 		}
 
 		// When not in the portal and iframe, directly invoke start
-		if(!trustedParentOrigin) {
+		if(!inIframe()) {
 			start({})
 		}
 	</script>

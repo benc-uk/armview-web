@@ -21,8 +21,8 @@
     // Testing only, 
     // Pretend we are the portal and send messages to the iframe to start it
     window.addEventListener('load', (event) => {
-      let ifrm = document.getElementById('viewFrame');
-      ifrm.contentWindow.postMessage({kind: 'frametitle', signature: 'ArmViewBlade', data: ''}, 'http://localhost:3000');
+      let viewFrame = document.getElementById('viewFrame');
+      viewFrame.contentWindow.postMessage({kind: 'frametitle', signature: 'ArmViewBlade', data: ''}, 'http://localhost:3000');
     });
     
   </script>

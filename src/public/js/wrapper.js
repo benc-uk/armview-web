@@ -24,3 +24,14 @@ function setFiltersWrapper() {
   if(filters === "") document.getElementById('statusFilters').innerHTML = "none"
   displayData(data);
 }
+
+//
+// Test if we're in an iframe
+//
+function inIframe () {
+  try {
+      return window.self !== window.top;
+  } catch (e) {
+      return true;
+  }
+}

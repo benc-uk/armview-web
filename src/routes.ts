@@ -53,11 +53,15 @@ app.get(['/view/:url', '/view'], async (req: Request, res: Response) => {
     if(req.query.url) url = req.query.url;
     if(!url) throw new Error('No URL, supplied');
 
+
     // Get template from raw/text body or form parameter named 'template'
     const response = await fetch(url);
     let template = await response.text();
     
     showHome = true;
+    // trustedAuthority is passed when in an iframe in the Azure portal, so hide the home button
+    if(req.query.trustedAuthority) showHome = false;
+
     parseAndRender(template, res);
   } catch(err) {
     res.render('error', { errorMsg: err.message });
