@@ -15,10 +15,10 @@ const QUICKSTART_URL = 'https://github.com/Azure/azure-quickstart-templates';
 var showHome = false;  // Show the home button in the rendered view
 
 //
-// For template provided as POST data
+// For template provided as POST data, used by Azure portal integration 
 //
 app.post('/view', async (req: any, res: Response) => {
-  try {  
+  try {      
     if(!req.body) throw new Error('No URL, supplied');
 
     // Get template from raw/text body or form parameter named 'template'
@@ -35,8 +35,9 @@ app.post('/view', async (req: any, res: Response) => {
       template = req.files.templateFile.data.toString();
       showHome = true;
     }
-
-    parseAndRender(template, res);
+    
+    // Note we pass forceStart = true here
+    parseAndRender(template, res, true);
   } catch(err) {
     res.status(500).send(err)
   }
@@ -53,7 +54,6 @@ app.get(['/view/:url', '/view'], async (req: Request, res: Response) => {
     if(req.query.url) url = req.query.url;
     if(!url) throw new Error('No URL, supplied');
 
-
     // Get template from raw/text body or form parameter named 'template'
     const response = await fetch(url);
     let template = await response.text();
@@ -63,6 +63,19 @@ app.get(['/view/:url', '/view'], async (req: Request, res: Response) => {
     if(req.query.trustedAuthority) showHome = false;
 
     parseAndRender(template, res);
+  } catch(err) {
+    res.render('error', { errorMsg: err.message });
+  }
+});
+
+//
+// For use in Azure portal - 'holding page' with fake form 
+// On receiving the correct postMessage the form is submitted to POST /view (see above)
+// See also azure-portal.js and the message event listener
+//
+app.get(['/viewPortal'], async (req: Request, res: Response) => {
+  try {    
+    res.render('viewPortal', {});
   } catch(err) {
     res.render('error', { errorMsg: err.message });
   }
@@ -102,7 +115,7 @@ app.get('/portaltest', (req: Request, res: Response) => {
 //
 // Parse using ARMParser and render the 'view' view
 //
-async function parseAndRender(template: string, res: Response) {
+async function parseAndRender(template: string, res: Response, forceStart: boolean = false) {
   try {
     let start = Date.now();
     let parser = new ARMParser(ICON_PATH, 'main');
@@ -112,7 +125,8 @@ async function parseAndRender(template: string, res: Response) {
     res.render('view', { 
       data: JSON.stringify(result), 
       iconPath: ICON_PATH_URL,
-      showHome: showHome
+      showHome: showHome,
+      forceStart: forceStart
     });
 
   } catch(err) {

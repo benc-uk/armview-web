@@ -10,7 +10,12 @@
   <!-- Load viewer as iframe -->
   <!-- Picked a random template on GitHub as the URL -->
   <!-- Note the trustedAuthority queryParam -->
-  <iframe id="viewFrame" src="http://localhost:3000/view?url=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-2-vms-internal-load-balancer%2Fazuredeploy.json&trustedAuthority=http://localhost:3000" frameborder="0" width="100%" style="height:95vh"></iframe>
+  <!-- <iframe id="viewFrame" src="http://172.30.143.188:3000/view?url=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-2-vms-internal-load-balancer%2Fazuredeploy.json&trustedAuthority=http://172.30.143.188:3000" frameborder="0" width="100%" style="height:95vh"></iframe> -->
+
+
+  <!-- Load fake form page as iframe, which will wait for 'armTemplate' message -->
+  <button onclick="sendTestTemplate()" style="font-size: x-large;">Send template data</button> <br/><br/>
+  <iframe id="viewFrame" src="http://172.30.143.188:3000/viewPortal?trustedAuthority=http://localhost:3000" frameborder="0" width="100%" style="height:95vh"></iframe> 
 
   <script>
     // Testing only
@@ -20,11 +25,28 @@
 
     // Testing only, 
     // Pretend we are the portal and send messages to the iframe to start it
-    window.addEventListener('load', (event) => {
-      let viewFrame = document.getElementById('viewFrame');
-      viewFrame.contentWindow.postMessage({kind: 'frametitle', signature: 'ArmViewBlade', data: ''}, 'http://localhost:3000');
-    });
+    // window.addEventListener('load', (event) => {
+    //   let viewFrame = document.getElementById('viewFrame');
+    //   viewFrame.contentWindow.postMessage({kind: 'frametitle', signature: 'ArmViewBlade', data: ''}, 'http://172.30.143.188:3000');
+    // });
     
+    function sendTestTemplate() {
+      console.log("Testing...");
+      
+      var templateString = `
+      {
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "resources": [
+          {
+            "name": "web1",
+            "type": "microsoft.web/sites"
+          }  
+        ]
+      }`
+      let viewFrame = document.getElementById('viewFrame');
+      viewFrame.contentWindow.postMessage({kind: 'framecontent', signature: 'ArmViewBlade', data: templateString}, 'http://localhost:3000');
+    }
   </script>
 </body>
 </html>

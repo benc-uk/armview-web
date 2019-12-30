@@ -55,7 +55,7 @@
     </div>
 	</div>
 
-	<!-- AZURE PORTAL CODE -->
+	<!-- AZURE PORTAL SPECIFIC INTEGRATION -->
 	<script src="/public/js/azure-portal.js"></script>
 
 	<script>
@@ -66,22 +66,15 @@
 
 		var data = <%- data %>;
 
-		// Called either by azure-portal.js on receiving correct message 
-		// or when forced below when in standalone web app mode
-		function start(msg) {		
-			document.querySelector('.loader').style.display = "none"
-			document.getElementById('statusResCount').innerHTML = data.length;
-			displayData(data);
+		document.querySelector('.loader').style.display = "none"
+		document.getElementById('statusResCount').innerHTML = data.length;
+		displayData(data);
 
-			postMessageToParent("initializationcomplete");
-			postMessageToParent("ready");
-			postMessageToParent("getAuthToken");
-		}
+		// Don't know if these are required
+		postMessageToParent("initializationcomplete");
+		postMessageToParent("ready");
+		postMessageToParent("getAuthToken");
 
-		// When not in the portal and iframe, directly invoke start
-		if(!inIframe()) {
-			start({})
-		}
 	</script>
 
 </body>

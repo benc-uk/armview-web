@@ -8,9 +8,9 @@ The main repo for the extension is here: https://github.com/benc-uk/armview-vsco
 # Notes & Project Structure
 The application is written in TypeScript and is a standard Node.js + Express web application.
 
-This app is effectively a wrapper around the VS Code extension, as such it is structured a little strangely. Effort has been made to use the code from the VS Code extension without any modification, and it is pulled into this repo via a Git submodule and resides in the `armview-vscode/` directory
+This app is effectively a wrapper around the VS Code extension, as such it is structured a little strangely. Effort has been made to use the code from the VS Code extension ***without any modification***, and it is pulled into this repo via a Git submodule and resides in the `armview-vscode/` directory
 
-Source for this app is held in `src` and `views`
+Source for this app is held in `src` and `views` folders
 
 ## Build Process & Assets
 When the app is built, it is TypeScript transpiled, along with the dependencies from `armview-vscode` and output is placed in `dist` directory
@@ -33,6 +33,7 @@ docker run -p 3000:3000 bencuk/armview-web:latest
 # Routes
 The following routes are supported:
 - `GET /` Show the simple home/index page
+- `GET /viewPortal` Integration page with fake form, for embedding in Azure portal
 - `GET /view?url=<template-url>` Render a template from the given URL (plain or URI encoded)
 - `GET /view/<template-url>` Render a template from the given URL, must be encoded
 - `POST /view` HTTP POST raw template as text or JSON

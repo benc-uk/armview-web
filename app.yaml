@@ -1,0 +1,30 @@
+#
+# Deploy with:
+# helm install armview https://code.benco.io/helm-charts/webapp-1.2.0.tgz -f app.yaml 
+#
+
+image:
+  tag: latest
+  repository: bencuk/armview
+  pullPolicy: Always
+
+service:
+  targetPort: 3000
+
+resources: 
+  limits:
+    cpu: 500m
+    memory: 80Mi
+  requests:
+    cpu: 200m
+    memory: 60Mi
+
+ingress:
+  enabled: true
+  host: armview.kube.benco.io
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  tls: 
+    enabled: true
+    secretName: kube-benco-io-cert

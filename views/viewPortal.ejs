@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<!-- Wrappers and web version specific files -->
+  <script src="/public/js/wrapper.js"></script>
+  <link href="/public/css/wrapper.css" rel="stylesheet" type="text/css">
+
+  <!-- Azure portal message handler  -->
+  <script src="/public/js/azure-portal.js"></script>
+
+  <!-- Main css from extension which has the loader spinner -->
+  <link href="/ext/css/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  <!-- Spinner while we wait for message, could leave this blank etc -->
+  <div class="loader"></div>
+
+  <!-- Fake form which is submitted by message handler in azure-portal.js -->
+  <form action="/view" method="POST" id="templateForm" style="visibility: hidden;">
+    <input type="hidden" id="templateFormData" name="template"> 
+  </form>
+
+</body>
+</html>

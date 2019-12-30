@@ -39,7 +39,7 @@ function postMessageToParent(kind) {
 
 // Get the below trusted origins from configuration to include the origin of the portal in
 // which the page needs to be iframe'd.
-var allowedParentFrameAuthorities = ["localhost:3000", "portal.azure.com", "df.onecloud.azure-test.net"];
+var allowedParentFrameAuthorities = [ "localhost:3000", "portal.azure.com", "df.onecloud.azure-test.net" ];
 
 // Capture the origin of the parent and validate that it is trusted. If it is not a trusted
 // origin, then DO NOT setup any listeners and IGNORE messages from the parent/owner window
@@ -59,7 +59,7 @@ if (!isTrustedOrigin) {
   throw new Error(errorMessage);
 }*/
 
-window.addEventListener("message", function(evt) {
+window.addEventListener("message", async function(evt) {
   console.log(`### Frame child, message recv: ${JSON.stringify(evt.data)} ${evt.origin}`);
   
   // It is critical that we only allow trusted messages through. Any domain can send a
@@ -77,12 +77,16 @@ window.addEventListener("message", function(evt) {
 
   // Handle different message kinds.
   if (msg.kind === "frametitle") {   
-    // This seems to be the way to trigger starting, so kick things off
-    start(msg);
+    // pass
   } else if (msg.kind === "framecontent") {
-    //document.getElementsByClassName("fxs-frame-content")[0].innerText = msg.data;
+    // Post the fake form with our received template data, assumes we're on the 'viewPortal.ejs' page
+    // Form posts data to /view route which results in template being rendered
+    if(document.getElementById('templateForm')) {
+      document.getElementById('templateFormData').value = msg.data;
+      document.getElementById('templateForm').submit();
+    }
   } else if (msg.kind === "getAuthTokenResponse") {
-    //document.getElementsByClassName("fxs-frame-token")[0].innerText = "Token: " + msg.data;
+    // pass
   } else {
     console.warn(sessionId, "Message not recognized.", msg);
   }
