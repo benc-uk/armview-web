@@ -10,7 +10,7 @@
 
   <!-- Load hidden form page as iframe, which will wait for 'armTemplate' message -->
   <button onclick="sendTestTemplate()" style="font-size: x-large;">Send template data</button> <br/><br/>
-  <iframe id="viewFrame" src="http://172.30.143.188:3000/viewPortal?trustedAuthority=http://172.30.143.188:3000" frameborder="0" width="100%" style="height:95vh"></iframe> 
+  <iframe id="viewFrame" src="http://localhost:3000/viewPortal?trustedAuthority=http://localhost:3000" frameborder="0" width="100%" style="height:95vh"></iframe> 
 
   <script>
     // Testing only, remove probably
@@ -41,9 +41,10 @@
             "siteName": { "value": "cheese" }
           }
         }`
-      }
+      };
+      
       let viewFrame = document.getElementById('viewFrame');
-      viewFrame.contentWindow.postMessage({kind: 'framecontent', signature: 'ArmViewBlade', data: armMessage}, 'http://172.30.143.188:3000');
+      viewFrame.contentWindow.postMessage({kind: 'framecontent', signature: 'ArmViewBlade', data: armMessage}, 'http://localhost:3000');
     }
   </script>
 </body>
