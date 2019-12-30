@@ -21,23 +21,31 @@ app.post('/view', async (req: any, res: Response) => {
   try {      
     if(!req.body) throw new Error('No URL, supplied');
 
-    // Get template from raw/text body or form parameter named 'template'
+    // When receiving normal form data (form-urlencoded)
+    // - form fields are named 'template' and 'parameters'
+    // - 'parameters' field is optional
     let template = ''
+    let parameters = ''
     showHome = false;
     if(req.is('application/x-www-form-urlencoded')) {
       template = req.body.template;
+      if(req.body.parameters)
+        parameters = req.body.parameters;
     } else {
+      // Get template & parameters from raw/text body
+      // This is never used
       template = req.body;
     }
 
     // Get template from file upload
+    // This is never used
     if(req.is('multipart/form-data')) {
       template = req.files.templateFile.data.toString();
       showHome = true;
     }
     
     // Note we pass forceStart = true here
-    parseAndRender(template, res, true);
+    parseAndRender(template, res, parameters);
   } catch(err) {
     res.status(500).send(err)
   }
@@ -115,18 +123,21 @@ app.get('/portaltest', (req: Request, res: Response) => {
 //
 // Parse using ARMParser and render the 'view' view
 //
-async function parseAndRender(template: string, res: Response, forceStart: boolean = false) {
+async function parseAndRender(template: string, res: Response, parameters: string = '') {
   try {
     let start = Date.now();
+
+    // Parse the template!
     let parser = new ARMParser(ICON_PATH, 'main');
-    let result = await parser.parse(template);			
+    let result = await parser.parse(template, parameters);		
+
     console.log(`### ArmView: Parsing took ${Date.now() - start} ms`);
 
+    // Render the view page with the parsed results passed in the 'data' property
     res.render('view', { 
       data: JSON.stringify(result), 
       iconPath: ICON_PATH_URL,
-      showHome: showHome,
-      forceStart: forceStart
+      showHome: showHome
     });
 
   } catch(err) {

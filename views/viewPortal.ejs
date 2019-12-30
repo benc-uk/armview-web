@@ -21,8 +21,9 @@
   <div class="loader"></div>
 
   <!-- Hidden form which is submitted by message handler in azure-portal.js -->
-  <form action="/view" method="POST" id="templateForm" style="visibility: hidden;">
-    <input type="hidden" id="templateFormData" name="template"> 
+  <form action="/view" method="POST" id="dataForm" style="visibility: hidden;">
+    <input type="hidden" name="template"> 
+    <input type="hidden" name="parameters"> 
   </form>
 
 </body>

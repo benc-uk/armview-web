@@ -81,9 +81,11 @@ window.addEventListener("message", async function(evt) {
   } else if (msg.kind === "framecontent") {
     // Post the hidden form with our received template data, assumes we're on the 'viewPortal.ejs' page
     // Form posts data to /view route which results in template being rendered
-    if(document.getElementById('templateForm')) {
-      document.getElementById('templateFormData').value = msg.data;
-      document.getElementById('templateForm').submit();
+    if(document.getElementById('dataForm')) {
+      let form = document.getElementById('dataForm')
+      form.template.value = msg.data.template
+      form.parameters.value = msg.data.parameters
+      form.submit();
     }
   } else if (msg.kind === "getAuthTokenResponse") {
     // pass
