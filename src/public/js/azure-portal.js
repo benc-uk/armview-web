@@ -79,7 +79,7 @@ window.addEventListener("message", async function(evt) {
   if (msg.kind === "frametitle") {   
     // pass
   } else if (msg.kind === "framecontent") {
-    // Post the fake form with our received template data, assumes we're on the 'viewPortal.ejs' page
+    // Post the hidden form with our received template data, assumes we're on the 'viewPortal.ejs' page
     // Form posts data to /view route which results in template being rendered
     if(document.getElementById('templateForm')) {
       document.getElementById('templateFormData').value = msg.data;

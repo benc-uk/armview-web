@@ -7,29 +7,18 @@
   <title>TEST</title>
 </head>
 <body onload="">
-  <!-- Load viewer as iframe -->
-  <!-- Picked a random template on GitHub as the URL -->
-  <!-- Note the trustedAuthority queryParam -->
-  <!-- <iframe id="viewFrame" src="http://172.30.143.188:3000/view?url=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-2-vms-internal-load-balancer%2Fazuredeploy.json&trustedAuthority=http://172.30.143.188:3000" frameborder="0" width="100%" style="height:95vh"></iframe> -->
 
-
-  <!-- Load fake form page as iframe, which will wait for 'armTemplate' message -->
+  <!-- Load hidden form page as iframe, which will wait for 'armTemplate' message -->
   <button onclick="sendTestTemplate()" style="font-size: x-large;">Send template data</button> <br/><br/>
   <iframe id="viewFrame" src="http://localhost:3000/viewPortal?trustedAuthority=http://localhost:3000" frameborder="0" width="100%" style="height:95vh"></iframe> 
 
   <script>
-    // Testing only
+    // Testing only, remove probably
     window.addEventListener("message", evt => {
       console.log(`### Frame parent, message recv: ${JSON.stringify(evt.data)}`);
     }, false);
 
-    // Testing only, 
-    // Pretend we are the portal and send messages to the iframe to start it
-    // window.addEventListener('load', (event) => {
-    //   let viewFrame = document.getElementById('viewFrame');
-    //   viewFrame.contentWindow.postMessage({kind: 'frametitle', signature: 'ArmViewBlade', data: ''}, 'http://172.30.143.188:3000');
-    // });
-    
+    // Simulate sending the template message to the iframe
     function sendTestTemplate() {
       console.log("Testing...");
       

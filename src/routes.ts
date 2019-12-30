@@ -69,7 +69,7 @@ app.get(['/view/:url', '/view'], async (req: Request, res: Response) => {
 });
 
 //
-// For use in Azure portal - 'holding page' with fake form 
+// For use in Azure portal - empty 'holding page' but with hidden form 
 // On receiving the correct postMessage the form is submitted to POST /view (see above)
 // See also azure-portal.js and the message event listener
 //
