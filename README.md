@@ -15,7 +15,13 @@ Source for this app is held in `src` and `views` folders
 ## Build Process & Assets
 When the app is built, it is TypeScript transpiled, along with the dependencies from `armview-vscode` and output is placed in `dist` directory
 
-An important part of the build is `copyStaticAssets.js` which takes static assets from both the `src/public/` and `armview-vscode/assets/` and copies them to dist.
+***NOTE!***
+An important part of the build is `copyStaticAssets.js` which takes static assets from both the `src/public/` and `armview-vscode/assets/` and copies them to dist. As follows
+
+```
+copy "src/public/*" -> "dist/public/"
+copy "armview-vscode/assets/*" -> "dist/ext/"
+```
 
 # Running Locally
 ```
