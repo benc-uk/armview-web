@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-            submodules: true
+          submodules: 'recursive'
 
       #- name: Build image
       #  run: docker build . --file Dockerfile --tag image
