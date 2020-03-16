@@ -22,7 +22,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+        with:
+          submodules: 'recursive'
+          
       - name: Run test build
         run: |
           docker build . --file Dockerfile
@@ -40,8 +42,8 @@ jobs:
         with:
           submodules: 'recursive'
 
-      #- name: Build image
-      #  run: docker build . --file Dockerfile --tag image
+      - name: Build image
+        run: docker build . --file Dockerfile --tag image
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
