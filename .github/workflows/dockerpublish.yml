@@ -1,11 +1,10 @@
-name: Docker
+name: Docker Build
 
 on:
   push:
     # Publish `master` as Docker `latest` image.
     branches:
       - master
-
     # Publish `v1.2.3` tags as releases.
     tags:
       - v*
@@ -14,32 +13,24 @@ on:
   pull_request:
 
 env:
-  # TODO: Change variable to your image's name.
   IMAGE_NAME: armview
 
 jobs:
-  # Run tests.
-  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
-  test:
+  # Run test build
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run tests
+      - name: Run test build
         run: |
-          if [ -f docker-compose.test.yml ]; then
-            docker-compose --file docker-compose.test.yml build
-            docker-compose --file docker-compose.test.yml run sut
-          else
-            docker build . --file Dockerfile
-          fi
+          docker build . --file Dockerfile
 
-  # Push image to GitHub Packages.
-  # See also https://docs.docker.com/docker-hub/builds/
+  # Push image to GitHub Packages
   push:
-    # Ensure test job passes before pushing image.
-    needs: test
+    # Ensure build job passes before pushing image.
+    needs: build
 
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
@@ -47,8 +38,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build image
-        run: docker build . --file Dockerfile --tag image
+      #- name: Build image
+      #  run: docker build . --file Dockerfile --tag image
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
