@@ -1,4 +1,4 @@
-FROM node:10-alpine as build
+FROM node:12-alpine as build
 WORKDIR /build
 
 COPY package*.json ./
@@ -12,7 +12,7 @@ RUN npm run build
 
 # ==========================================
 
-FROM node:10-alpine as runtime
+FROM node:12-alpine as runtime
 WORKDIR /app
 
 COPY package*.json ./

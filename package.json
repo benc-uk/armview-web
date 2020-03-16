@@ -1,6 +1,6 @@
 {
   "name": "armview-web",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Standalone web version of armview-vscode extension",
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
     "watch-node": "nodemon dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Server,Assets\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\" \"npm run watch-assets\"",
     "build-ts": "tsc",
+    "lint": "eslint --ext .ts src",
     "watch-ts": "tsc -w",
     "copy-assets": "node copyStaticAssets.js",
     "watch-assets": "nodemon -w src/public -e css,png,js copyStaticAssets.js"
@@ -23,23 +24,25 @@
     "body-parser": "^1.19.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.6-alpha.5",
+    "express-fileupload": "^1.1.6",
     "isomorphic-fetch": "^2.2.1",
-    "jsonlint": "^1.6.3",
     "memory-cache": "^0.2.0",
     "node-cache": "^4.2.1",
     "strip-bom": "^3.0.0",
     "strip-json-comments": "^3.0.1",
     "uuid": "^3.3.3",
-    "vscode-extension-telemetry": "^0.1.2"
+    "vscode-extension-telemetry": "^0.1.2",
+    "@bencuk/jsonlint": "10.2.1-fork"
   },
   "devDependencies": {
     "@types/express": "4.11.1",
     "@types/node": "^12.7.12",
     "@types/vscode": "^1.30.0",
-    "concurrently": "^5.0.0",
-    "eslint": "^6.4.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "concurrently": "^5.1.0",
+    "eslint": "^6.8.0",
     "shelljs": "^0.8.3",
-    "typescript": "^3.6.4"
+    "typescript": "^3.8.3"
   }
 }
