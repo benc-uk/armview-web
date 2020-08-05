@@ -24,7 +24,7 @@
     "body-parser": "^1.19.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.6",
+    "express-fileupload": "^1.1.9",
     "isomorphic-fetch": "^2.2.1",
     "memory-cache": "^0.2.0",
     "node-cache": "^4.2.1",
