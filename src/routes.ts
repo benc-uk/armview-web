@@ -78,19 +78,6 @@ app.get(['/view/:url', '/view'], async (req: Request, res: Response) => {
 })
 
 //
-// For use in Azure portal - empty 'holding page' but with hidden form
-// On receiving the correct postMessage the form is submitted to POST /view (see above)
-// See also azure-portal.js and the message event listener
-//
-app.get(['/viewPortal'], async (req: Request, res: Response) => {
-  try {
-    res.render('viewPortal', {})
-  } catch(err) {
-    res.render('error', { errorMsg: err.message })
-  }
-})
-
-//
 // Simple web frontend for humans
 //
 app.get(['/', '/home'], async (req: Request, res: Response) => {
@@ -107,20 +94,11 @@ app.get(['/', '/home'], async (req: Request, res: Response) => {
   } else {
     gitHubLinks = _processGithubHtml(cachedHtml)
   }
-  const version = require('../../package.json').version
-  const versionExt = require('../../armview-vscode/package.json').version
+  const version = require('../package.json').version
+  const versionExt = require('../ext-package.json').version
 
   res.render('index', { gitHubLinks, version, versionExt })
 })
-
-
-//
-// TEST HARNESS FOR PORTAL WORK - TO BE REMOVED
-//
-app.get('/portaltest', (req: Request, res: Response) => {
-  res.render('portaltest')
-})
-
 
 //
 // Parse using ARMParser and render the 'view' view
