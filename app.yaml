@@ -5,7 +5,7 @@
 #
 
 image:
-  tag: 0.0.3
+  tag: latest
   repository: ghcr.io/benc-uk/armview-web
   pullPolicy: Always
 

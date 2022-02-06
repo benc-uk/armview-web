@@ -31,7 +31,7 @@ npm run serve
 ```
 
 # Running In Docker
-A `Dockerfile` is provided. Either build locallly with `docker build` or pull from Dockerhub:
+A `Dockerfile` is provided. Either build locally with `docker build` or pull from Dockerhub:
 ```
 docker run -p 3000:3000 bencuk/armview-web:latest
 ```

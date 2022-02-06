@@ -3,7 +3,7 @@
 import app from './app'
 
 import { Request, Response } from 'express'
-import * as cache from 'memory-cache'
+//import * as cache from 'memory-cache'
 import 'isomorphic-fetch'
 
 import ARMParser from '../armview-vscode/src/lib/arm-parser'
@@ -12,7 +12,7 @@ import ARMParser from '../armview-vscode/src/lib/arm-parser'
 const THEME_NAME = 'original'
 const ICON_PATH = `${__dirname}/../ext/img/azure/${THEME_NAME}`
 const ICON_PATH_URL = `/ext/img/azure/${THEME_NAME}`
-const QUICKSTART_URL = 'https://github.com/Azure/azure-quickstart-templates'
+//const QUICKSTART_URL = 'https://github.com/Azure/azure-quickstart-templates'
 
 let showHome = false  // Show the home button in the rendered view
 
@@ -81,7 +81,8 @@ app.get(['/view/:url', '/view'], async (req: Request, res: Response) => {
 // Simple web frontend for humans
 //
 app.get(['/', '/home'], async (req: Request, res: Response) => {
-  const cachedHtml = cache.get('githubHtml')
+  const gitHubLinks: string[] = []
+  /*const cachedHtml = cache.get('githubHtml')
 
   let gitHubLinks: string[] = []
   if(!cachedHtml) {
@@ -93,7 +94,7 @@ app.get(['/', '/home'], async (req: Request, res: Response) => {
     gitHubLinks = _processGithubHtml(result)
   } else {
     gitHubLinks = _processGithubHtml(cachedHtml)
-  }
+  }*/
   const version = require('../package.json').version
   const versionExt = require('../ext-package.json').version
 
