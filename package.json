@@ -21,9 +21,9 @@
     "watch-assets": "nodemon -w src/public -e css,png,js copyStaticAssets.js"
   },
   "dependencies": {
-    "body-parser": "^1.19.1",
+    "body-parser": "^1.20.1",
     "ejs": "^3.1.6",
-    "express": "^4.17.2",
+    "express": "^4.18.2",
     "express-fileupload": "^1.3.1",
     "isomorphic-fetch": "^3.0.0",
     "memory-cache": "^0.2.0",
